@@ -1,5 +1,5 @@
 public with sharing class OpenAIAPIService {
-    static OpenAI_API_Setting__mdt openAISetting = OpenAI_API_Setting__mdt.getInstance('Chat_Completions_V1');
+    static Generative_AI_API_Setting__mdt openAISetting = Generative_AI_API_Setting__mdt.getInstance('OpenAI_Chat_Completions_V1');
 
     @AuraEnabled
     public static Response getResponseToPrompt(String prompt){

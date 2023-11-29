@@ -1,0 +1,622 @@
+{
+	"info": {
+		"_postman_id": "e6319c62-6b2e-410a-9faf-fe9fd72326c1",
+		"name": "LLM Gateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12220995",
+		"_collection_link": "https://martian-sunset-286785.postman.co/workspace/Einstein-GPT-Foundations~3548e1c4-a4dd-4383-989d-8443a0c833f9/collection/12220995-e6319c62-6b2e-410a-9faf-fe9fd72326c1?action=share&source=collection_link&creator=12220995"
+	},
+	"item": [
+		{
+			"name": "Get Models",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "X-LLM-Provider",
+						"value": "{{llm_provider}}",
+						"type": "default"
+					},
+					{
+						"key": "X-Org-Id",
+						"value": "{{org_id}}",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{auth_scheme}} {{auth_token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{gateway_url}}/v1.0/models",
+					"host": [
+						"{{gateway_url}}"
+					],
+					"path": [
+						"v1.0",
+						"models"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get LLM Providers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "X-Org-Id",
+						"value": "{{org_id}}",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{auth_scheme}} {{auth_token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{gateway_url}}/v1.0/llm-providers",
+					"host": [
+						"{{gateway_url}}"
+					],
+					"path": [
+						"v1.0",
+						"llm-providers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Completions",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "X-LLM-Provider",
+						"value": "{{llm_provider}}",
+						"type": "default"
+					},
+					{
+						"key": "X-Org-Id",
+						"value": "{{org_id}}",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{auth_scheme}} {{auth_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prompt\": \"Give me 5 Synonyms of word 'confused'\",\n    \"temperature\": 0.5,\n    \"max_tokens\": 512\n}"
+				},
+				"url": {
+					"raw": "{{gateway_url}}/v1.0/generations",
+					"host": [
+						"{{gateway_url}}"
+					],
+					"path": [
+						"v1.0",
+						"generations"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Generate Completions Internal",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-LLM-Provider",
+								"value": "InternalTextGeneration",
+								"type": "default"
+							},
+							{
+								"key": "X-Org-Id",
+								"value": "<ORG ID>",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "API_KEY <API KEY>",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prompt\": \"Give me 5 Synonyms of word 'confused'\",\n    \"temperature\": 0.5,\n    \"max_tokens\": 512,\n    \"parameters\": {\n        \"input_text_type\": \"crm_text\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}/v1.0/generations",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"v1.0",
+								"generations"
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Generate Completions Cohere",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-LLM-Provider",
+								"value": "Cohere",
+								"type": "default"
+							},
+							{
+								"key": "X-Org-Id",
+								"value": "<ORG ID>",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "API_KEY <API KEY>",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prompt\": \"Give me 5 Synonyms of word 'confused'\",\n    \"temperature\": 0.5,\n    \"max_tokens\": 512,\n    \"num_generations\": 2,\n    \"model\": \"command-xlarge-20221108\",\n    \"parameters\": {\n        \"k\": 25\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}/v1.0/generations",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"v1.0",
+								"generations"
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Generate Completions OpenAI",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-LLM-Provider",
+								"value": "OpenAI",
+								"type": "default"
+							},
+							{
+								"key": "X-Org-Id",
+								"value": "<ORG ID>",
+								"type": "default"
+							},
+							{
+								"key": "Authorization",
+								"value": "API_KEY <API KEY>",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"prompt\": \"Give me 5 Synonyms of word 'confused'\",\n    \"temperature\": 0.6,\n    \"max_tokens\": 512,\n    \"model\": \"text-davinci-003\",\n    \"parameters\": {\n        \"logprobs\": 5,\n        \"echo\": true,\n        \"user\": \"test-llm-user\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}/v1.0/generations",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"v1.0",
+								"generations"
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Chat Create Session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is ok\",  ()=>{",
+							"    if( pm.response.to.have.status(201)){",
+							"        var jsonData = pm.response.json();",
+							"        pm.collectionVariables.set(\"sessoin-id\", jsonData.session_details.session_id);",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_scheme}} {{auth_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-LLM-Provider",
+						"value": "{{llm_provider}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Org-Id",
+						"value": "{{org_id}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Request-Id",
+						"value": "{{$guid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Client-Feature",
+						"value": "feature",
+						"type": "text"
+					},
+					{
+						"key": "X-Cloud-Cost-Id",
+						"value": "costId",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"session_settings\": {\n        \"model\": \"gpt-3.5-turbo\",\n        \"session_ttl\": 5,\n        \"system_prompt\": \"You are a helpful assistant.\",\n        \"conversational_memory_settings\":{\n            \"max_turns\": 5,\n            \"strategy\":\"last_n_turns\"\n        },\n        \"enable_pii_masking\": false,\n        \"metadata\": {\"dummy\": \"data\"}\n    },\n    \"generation_settings\": {\n        \"max_tokens\": 50,\n        \"num_generations\": 1,\n        \"temperature\": 0.5,\n        \"stop_sequences\": [],\n        \"frequency_penalty\": 0.0,\n        \"presence_penalty\": 0.0,\n        \"parameters\": { \"top_p\":0.5}\n    },\n    \"messages\": [\n        {\n            \"id\": null,\n            \"role\": \"assistant\",\n            \"content\": \"Here is the answer to your question.\",\n            \"timestamp\": 1686675669283,\n            \"parameters\": null\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{gateway_url}}/v1.0/chat/sessions",
+					"host": [
+						"{{gateway_url}}"
+					],
+					"path": [
+						"v1.0",
+						"chat",
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Embeddings",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "X-LLM-Provider",
+						"value": "OpenAI",
+						"type": "default"
+					},
+					{
+						"key": "X-Org-Id",
+						"value": "{{org_id}}",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{auth_scheme}} {{auth_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"input\": [\n        \"In a galaxy far far away\"\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{gateway_url}}/v1.0/embeddings",
+					"host": [
+						"{{gateway_url}}"
+					],
+					"path": [
+						"v1.0",
+						"embeddings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chat Generation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_scheme}} {{auth_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-LLM-Provider",
+						"value": "{{llm_provider}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Org-Id",
+						"value": "{{org_id}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Request-Id",
+						"value": "{{$guid}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Cloud-Cost-Id",
+						"value": "costId",
+						"type": "text"
+					},
+					{
+						"key": "X-Client-Feature",
+						"value": "featureName",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_message\":\"What is the meaning of life ?\",\n    \"generation_settings\": {\n        \"max_tokens\": 50,\n        \"num_generations\": 1,\n        \"temperature\": 0.5,\n        \"stop_sequences\": [\"stop\"],\n        \"frequency_penalty\": 0.0,\n        \"presence_penalty\": 0.0,\n        \"parameters\": { \"top_p\":0.5}\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{gateway_url}}/v1.0/chat/session/{{sessoin-id}}/messages",
+					"host": [
+						"{{gateway_url}}"
+					],
+					"path": [
+						"v1.0",
+						"chat",
+						"session",
+						"{{sessoin-id}}",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chat Get Session",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_scheme}} {{auth_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Org-Id",
+						"value": "{{org_id}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Cloud-Cost-Id",
+						"value": "costId",
+						"type": "text"
+					},
+					{
+						"key": "X-Client-Feature",
+						"value": "featureId",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{gateway_url}}/v1.0/chat/session/{{sessoin-id}}",
+					"host": [
+						"{{gateway_url}}"
+					],
+					"path": [
+						"v1.0",
+						"chat",
+						"session",
+						"{{sessoin-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chat Delete Session",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_scheme}} {{auth_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Org-Id",
+						"value": "{{org_id}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Cloud-Cost-Id",
+						"value": "costId",
+						"type": "text"
+					},
+					{
+						"key": "X-Client-Feature",
+						"value": "featureId",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{gateway_url}}/v1.0/chat/session/{{sessoin-id}}",
+					"host": [
+						"{{gateway_url}}"
+					],
+					"path": [
+						"v1.0",
+						"chat",
+						"session",
+						"{{sessoin-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chat Messages",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_scheme}} {{auth_token}}",
+						"type": "text"
+					},
+					{
+						"key": "X-LLM-Provider",
+						"value": "{{llm_provider}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Org-Id",
+						"value": "{{org_id}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"model\": \"gpt-3.5-turbo\",\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": \"What is the capital of Montana ?\"\n        }\n    ],\n    \"generation_settings\": {\n        \"num_generations\": 1,\n        \"max_tokens\": 150\n    },\n    \"enable_pii_masking\": false,\n    \"enable_input_safety_scoring\": false,\n    \"enable_output_safety_scoring\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{gateway_url}}/v1.0/chat/generations",
+					"host": [
+						"{{gateway_url}}"
+					],
+					"path": [
+						"v1.0",
+						"chat",
+						"generations"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "sessoin-id",
+			"value": ""
+		}
+	]
+}
