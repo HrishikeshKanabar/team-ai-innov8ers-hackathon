@@ -1,0 +1,24 @@
+<template>
+        <lightning-card title="Query Generator" icon-name="standard:account">
+                <!--Generator interface-->
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_2-of-3">
+                        <lightning-input style="margin-left:20px" type="string" value={question} onchange={handleOnChange}></lightning-input>&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <br/>
+                        <lightning-button class="slds-button" variant="brand" label="Generate" title="Primary action" onclick={handleOnClick} ></lightning-button>
+                   </div>
+                </div>
+                         <!--Response interface-->
+        <div class="slds-card_header slds-grid">  
+        </div>
+        <div style="margin:20px;" if:false={isLoading} class="slds-card_body">
+            {message}
+        </div>
+        <div if:true={isLoading} class="slds-card_body">
+            <lightning-spinner alternative-text="Loading..." variant="brand">               
+            </lightning-spinner>
+        </div>
+        </lightning-card>
+</template>
