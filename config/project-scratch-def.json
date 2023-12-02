@@ -1,5 +1,5 @@
 {
   "orgName": "sdhond company",
-  "edition": "Developer",
-  "features": ["DevelopmentWave", "EinsteinAnalyticsPlus"]
+  "edition": "Enterprise",
+  "features": ["DevelopmentWave", "EinsteinAnalyticsPlus","EinsteinGPTPlatform", "EinsteinGPT", "EinsteinHawkingC2CEnabled", "AnalyticsAdminPerms", "AnalyticsAppEmbedded"]
 }

@@ -1,3 +1,5 @@
 # SFDX
 .sf/
 .sfdx/
+.pmdCache
+.localdevserver/*
