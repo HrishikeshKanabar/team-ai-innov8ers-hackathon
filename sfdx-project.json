@@ -7,6 +7,6 @@
   ],
   "name": "aihackathon",
   "namespace": "",
-  "sfdcLoginUrl": "https://ai-innov8rs-amers.test1.my.pc-rnd.salesforce.com",
+  "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "59.0"
 }

@@ -16,6 +16,7 @@ public with sharing class AIConnectAPIService {
 
             return response.text;
         } catch (Exception e) {
+            System.debug(e.getMessage());
             throw new AuraHandledException(e.getMessage());
         }
     }

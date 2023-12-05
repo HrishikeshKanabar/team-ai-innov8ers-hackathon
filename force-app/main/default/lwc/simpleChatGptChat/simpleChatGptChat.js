@@ -2,7 +2,7 @@ import { LightningElement, track, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { getRecord } from 'lightning/uiRecordApi';
 
-import getResponseToPrompt from '@salesforce/apex/OpenAIAPIService.getResponseToPrompt';
+import getPromptRes from '@salesforce/apex/AIConnectAPIService.getPromptRes';
 
 import Id from '@salesforce/user/Id';
 import UserNameFIELD from '@salesforce/schema/User.Name';
@@ -45,10 +45,10 @@ export default class SimpleChatGptChat extends LightningElement {
 
             //Send request to chatgpt
             //TODO: Adding typing message
-            getResponseToPrompt({prompt: message})
+            getPromptRes({prompt: message})
             .then((result) => {
                 //this.message = result.choices[0].message.content;
-                this.addMessageToChatTranscript(result.choices[0].message.content, "ChatGPT", "outbound");
+                this.addMessageToChatTranscript(result, "ChatGPT", "outbound");
                 //TODO: Remove typing message
             }).catch((error) => {
                 console.log('Error: ' + JSON.stringify(error));
