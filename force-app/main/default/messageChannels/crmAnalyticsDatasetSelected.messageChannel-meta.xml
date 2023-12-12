@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>crmAnalyticsDatasetSelected</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Message channel for CRM Analytics dataset selection in Analytics helper app.</description>
+    <lightningMessageFields>
+        <fieldName>datasetId</fieldName>
+        <description>Id of the dataset selected</description>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <fieldName>datasetVersionId</fieldName>
+        <description>Id of the current dataset version</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

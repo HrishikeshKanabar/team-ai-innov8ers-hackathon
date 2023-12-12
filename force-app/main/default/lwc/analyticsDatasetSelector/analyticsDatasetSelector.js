@@ -1,13 +1,22 @@
 import { LightningElement, wire } from "lwc";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import { getDatasets } from "lightning/analyticsWaveApi";
+
+//Message service imports
+import { publish, MessageContext } from 'lightning/messageService';
+import crmAnalyticsDatasetSelected from '@salesforce/messageChannel/crmAnalyticsDatasetSelected__c';
 
 export default class AnalyticsDatasetSelector extends LightningElement {
     _datasets;
+    _datasetOptions;
     selectedDatasetId;
+
+    @wire(MessageContext)
+    messageContext
 
     get datasetOptions() {
         //console.log(JSON.stringify(this._datasetOptions));
-        return this._datasets
+        return this._datasetOptions;
     }
 
     @wire(getDatasets, {
@@ -15,19 +24,29 @@ export default class AnalyticsDatasetSelector extends LightningElement {
     })
     onGetDatasets({ data, error }) {
         if (error) {
-          //console.log("getDatasets ERROR:", error);
+          const evt = new ShowToastEvent({
+            title: "Error",
+            message: error.message,
+            variant: "error",
+          });
+          this.dispatchEvent(evt);
         } else if (data) {
-          //console.log("getDatasets RESPONSE:", JSON.stringify(data.datasets));
-          this._datasets = [];
+          this._datasets = data.datasets;
+          this._datasetOptions = [];
           for(let dataset of data.datasets) {
-            this._datasets.push({label: dataset.label, value: dataset.id});
+            this._datasetOptions.push({label: dataset.label, value: dataset.id});
           }
         }
     }
 
     handleDatasetChange(event) {
-        console.log('event.detail.value: ' + event.detail.value);
+        //event for parent
         this.selectedDatasetId = event.detail.value;
-        this.dispatchEvent(new CustomEvent("datasetSelectedChange", {detail: this._selectedDatasetId}));
+        let selectedDataset = this._datasets.find(x => x.id === this.selectedDatasetId);
+        this.dispatchEvent(new CustomEvent("selecteddatasetchange", { bubbles:true, detail: {dataset: selectedDataset}}));
+
+        //send to lightning message channel
+        const payload = {datasetId: selectedDataset.id, datasetVersionId: selectedDataset.currentVersionId};
+        publish(this.messageContext, crmAnalyticsDatasetSelected, payload);
     }
 }

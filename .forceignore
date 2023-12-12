@@ -12,3 +12,6 @@ package.xml
 **/__tests__/**
 
 force-app/main/default/permissionsets/AIApptest.permissionset-meta.xml
+force-app/main/default/classes/AIConnectAPIService.cls
+force-app/main/default/classes/AIConnectAPIService.cls-meta.xml
+force-app/main/default/lwc/aiTestPrompt

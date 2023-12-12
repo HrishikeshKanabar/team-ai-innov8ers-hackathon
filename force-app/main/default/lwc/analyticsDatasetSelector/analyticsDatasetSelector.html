@@ -1,13 +1,11 @@
 <template>
-    <lightning-card title="CRM Analytics Dataset Explorer Bot">
-        <lightning-combobox
-            name="Dataset"
-            label="Dataset"
-            value={selectedDatasetId}
-            placeholder="Select Dataset"
-            options={datasetOptions}
-            onchange={handleDatasetChange} >
-        </lightning-combobox>
-        <p>Selected Dataset Id: {selectedDatasetId}</p>
-    </lightning-card>
+    <lightning-combobox
+        name="Dataset"
+        label="Dataset"
+        value={selectedDatasetId}
+        placeholder="Select Dataset"
+        options={datasetOptions}
+        onchange={handleDatasetChange} 
+        class="slds-p-around_x-small">
+    </lightning-combobox>
 </template>
