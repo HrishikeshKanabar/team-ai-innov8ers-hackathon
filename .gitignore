@@ -3,3 +3,7 @@
 .sfdx/
 .pmdCache
 .localdevserver/*
+
+# VSCODE
+.vscode/
+.vscode/settings.json

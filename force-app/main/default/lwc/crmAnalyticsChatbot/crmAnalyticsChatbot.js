@@ -10,7 +10,9 @@ import UserNameFIELD from '@salesforce/schema/User.Name';
 import UserIsActiveFIELD from '@salesforce/schema/User.IsActive';
 import UserAliasFIELD from '@salesforce/schema/User.Alias';
 
-export default class SimpleChatGptChat extends LightningElement {
+const ANALYTICS_BOT_USER_LABEL = 'CRM Analytics Bot';
+
+export default class CrmAnalyticsChatbot extends LightningElement {
     error;
     userId = Id;
     currentUserName;
@@ -20,6 +22,8 @@ export default class SimpleChatGptChat extends LightningElement {
 
     @track chatTranscript = [];
     @track messageIndex = 0;
+    @track showChat = false;
+    @track dataset;
 
     @wire(getRecord, {recordId: Id, fields: [UserNameFIELD, UserAliasFIELD, UserIsActiveFIELD]})
     currentUserInfo({error, data}) {
@@ -46,14 +50,13 @@ export default class SimpleChatGptChat extends LightningElement {
 
             //Send request to chatgpt
             //TODO: Adding typing message
-            getPromptRes({prompt: message})
+            getResponseToPrompt({prompt: message})
             .then((result) => {
                 this.message = result.choices[0].message.content;
                 // this.message = result;
-                this.addMessageToChatTranscript(message, "ChatGPT", "outbound");
+                this.addMessageToChatTranscript(message, ANALYTICS_BOT_USER_LABEL, "outbound");
                 //TODO: Remove typing message
             }).catch((error) => {
-                console.log('Error: ' + JSON.stringify(error));
                 this.dispatchEvent(new ShowToastEvent({
                     title: 'ERROR!!!',
                     message: error.message,
@@ -106,5 +109,14 @@ export default class SimpleChatGptChat extends LightningElement {
         chatTypingEvent.messageDirection = direction;
         chatTypingEvent.messageKey = this.messageIndex;
         this.messageIndex++;
+    }
+
+    handleSelectedDatasetChange(event) {
+        this.dataset = event.detail.dataset;
+
+        //Dataset Changed message
+        this.showChat = true;
+        let msg = 'Target dataset changed ' + event.detail.dataset.label;
+        this.addMessageToChatTranscript(msg, ANALYTICS_BOT_USER_LABEL, "outbound");
     }
 }

@@ -1,0 +1,114 @@
+{
+    "createdBy": {
+        "id": "005Hs00000EMgGSIA1",
+        "name": "Shreyas Dhond",
+        "profilePhotoUrl": "https://crmanalyticstrialcom-dev-ed.develop.file.force.com/profilephoto/005/T"
+    },
+    "createdDate": "2023-12-07T16:03:13.000Z",
+    "id": "0FbHs000001EHLhKAO",
+    "label": "Accounts",
+    "lastAccessedDate": "2023-12-11T04:11:23.000Z",
+    "lastModifiedBy": {
+        "id": "005Hs00000EKNmuIAH",
+        "name": "Integration User",
+        "profilePhotoUrl": "https://crmanalyticstrialcom-dev-ed.develop.file.force.com/profilephoto/005/T"
+    },
+    "lastModifiedDate": "2023-12-11T04:03:50.000Z",
+    "name": "account",
+    "permissions": {
+        "create": true,
+        "manage": true,
+        "modify": true,
+        "view": true
+    },
+    "type": "dataset",
+    "url": "/services/data/v59.0/wave/datasets/0FbHs000001EHLhKAO",
+    "clientShardsUrl": "/services/data/v59.0/wave/datasets/0FbHs000001EHLhKAO/shards",
+    "currentVersionCreatedBy": {
+        "id": "005Hs00000EKNmuIAH",
+        "name": "Integration User",
+        "profilePhotoUrl": "https://crmanalyticstrialcom-dev-ed.develop.file.force.com/profilephoto/005/T"
+    },
+    "currentVersionCreatedDate": "2023-12-07T16:03:13.000Z",
+    "currentVersionId": "0FcHs000009msQWKAY",
+    "currentVersionLastModifiedBy": {
+        "id": "005Hs00000EKNmuIAH",
+        "name": "Integration User",
+        "profilePhotoUrl": "https://crmanalyticstrialcom-dev-ed.develop.file.force.com/profilephoto/005/T"
+    },
+    "currentVersionLastModifiedDate": "2023-12-11T04:03:50.000Z",
+    "currentVersionSupportsNewDates": false,
+    "currentVersionTotalRowCount": 1001,
+    "currentVersionUrl": "/services/data/v59.0/wave/datasets/0FbHs000001EHLhKAO/versions/0FcHs000009msQWKAY",
+    "dataRefreshDate": "2020-03-04T01:50:04.000Z",
+    "datasetType": "default",
+    "folder": {
+        "id": "00lHs000003KPIrIAO",
+        "label": "salestest",
+        "name": "salestest",
+        "url": "/services/data/v59.0/wave/folders/00lHs000003KPIrIAO"
+    },
+    "lastQueriedDate": "2023-12-11T04:11:24.000Z",
+    "userXmd": {
+        "createdBy": {
+            "id": "005Hs00000EMgGSIA1",
+            "name": "Shreyas Dhond",
+            "profilePhotoUrl": "https://crmanalyticstrialcom-dev-ed.develop.file.force.com/profilephoto/005/T"
+        },
+        "createdDate": "2023-12-07T16:03:13.000Z",
+        "dataset": {},
+        "dates": [],
+        "derivedDimensions": [],
+        "derivedMeasures": [
+            {
+                "conditionalFormatting": {},
+                "field": "TotalPrice",
+                "format": {
+                    "customFormat": "[\"$#,###\",1]",
+                    "decimalDigits": 2,
+                    "delimiters": {}
+                },
+                "label": "Total Price"
+            }
+        ],
+        "dimensions": [
+            {
+                "conditionalFormatting": {},
+                "customActions": [],
+                "field": "Name",
+                "linkTemplate": "/{{row.Id}}",
+                "linkTooltip": "Open Account",
+                "members": [],
+                "recordDisplayFields": [],
+                "recordIdField": "Id",
+                "salesforceActions": []
+            },
+            {
+                "conditionalFormatting": {},
+                "customActions": [],
+                "field": "AccountName",
+                "label": "Account Name",
+                "linkTemplate": "/{{row.Id}}",
+                "linkTooltip": "Open Account",
+                "members": [],
+                "recordDisplayFields": [],
+                "recordIdField": "Id",
+                "salesforceActions": [],
+                "showInExplorer": false
+            }
+        ],
+        "language": "en_US",
+        "lastModifiedBy": {
+            "id": "005Hs00000EMgGSIA1",
+            "name": "Shreyas Dhond",
+            "profilePhotoUrl": "https://crmanalyticstrialcom-dev-ed.develop.file.force.com/profilephoto/005/T"
+        },
+        "lastModifiedDate": "2023-12-07T16:03:13.000Z",
+        "measures": [],
+        "organizations": [],
+        "showDetailsDefaultFields": [],
+        "type": "user"
+    },
+    "versionsUrl": "/services/data/v59.0/wave/datasets/0FbHs000001EHLhKAO/versions",
+    "visibility": "All"
+}
