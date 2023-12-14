@@ -3,6 +3,12 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>crmAnalyticsDatasetDescribe</componentName>
+                <identifier>c_crmAnalyticsDatasetDescribe</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>crmAnalyticsDatasetTable</componentName>
                 <identifier>c_crmAnalyticsDatasetTable</identifier>
             </componentInstance>

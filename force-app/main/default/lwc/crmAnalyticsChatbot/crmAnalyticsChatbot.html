@@ -2,7 +2,7 @@
     <lightning-card title="CRM Analytics Chatbot">
         <c-analytics-dataset-selector onselecteddatasetchange={handleSelectedDatasetChange}></c-analytics-dataset-selector>
         <template lwc:if={showChat}>
-            <section role="log" class="slds-chat slds-p-around_x-small">
+            <section role="log" class="slds-chat slds-scrollable slds-p-around_x-small" style="height:20rem;">
                 <ul class="slds-chat-list" data-target="chatContext">
                     <div class="slds-chat-bookend">
                         <span class="slds-icon_container slds-icon-utility-chat slds-chat-icon">

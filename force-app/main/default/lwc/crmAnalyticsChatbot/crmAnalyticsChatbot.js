@@ -1,8 +1,9 @@
 import { LightningElement, track, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { getRecord } from 'lightning/uiRecordApi';
+import { getDatasetVersion } from "lightning/analyticsWaveApi";
 
-//import getPromptRes from '@salesforce/apex/AIConnectAPIService.getPromptRes';
+// import getPromptRes from '@salesforce/apex/AIConnectAPIService.getPromptRes';
 import getResponseToPrompt from '@salesforce/apex/OpenAIAPIService.getResponseToPrompt';
 
 import Id from '@salesforce/user/Id';
@@ -24,6 +25,9 @@ export default class CrmAnalyticsChatbot extends LightningElement {
     @track messageIndex = 0;
     @track showChat = false;
     @track dataset;
+    @track datasetId;
+    @track datasetVersionId;
+    @track datasetVersion;
 
     @wire(getRecord, {recordId: Id, fields: [UserNameFIELD, UserAliasFIELD, UserIsActiveFIELD]})
     currentUserInfo({error, data}) {
@@ -33,6 +37,24 @@ export default class CrmAnalyticsChatbot extends LightningElement {
             this.currentUserAlias = data.fields.Alias.value;
         } else if (error) {
             this.error = error;
+        }
+    }
+
+    @wire(getDatasetVersion, {
+        datasetIdOrApiName: "$datasetId",
+        versionId: "$datasetVersionId",
+    })
+    onGetDatasetVersion({data, error}) {
+        if(error){
+            this.dispatchEvent(new ShowToastEvent({
+                title: 'ERROR!!!',
+                message: error.message,
+                variant: 'error'
+            }));
+        } else if (data) {
+            this.datasetVersion = data;
+            let msg = 'The json below describes my dataset. Please summarize in a paragraph.' + JSON.stringify(this.datasetVersion);
+            this.getAIResponse(msg);
         }
     }
 
@@ -50,20 +72,7 @@ export default class CrmAnalyticsChatbot extends LightningElement {
 
             //Send request to chatgpt
             //TODO: Adding typing message
-            getResponseToPrompt({prompt: message})
-            .then((result) => {
-                this.message = result.choices[0].message.content;
-                // this.message = result;
-                this.addMessageToChatTranscript(message, ANALYTICS_BOT_USER_LABEL, "outbound");
-                //TODO: Remove typing message
-            }).catch((error) => {
-                this.dispatchEvent(new ShowToastEvent({
-                    title: 'ERROR!!!',
-                    message: error.message,
-                    variant: 'error'
-                }));
-                //TODO: Remove typing message
-            })
+            this.getAIResponse(message);
 
             //empty input field
             this.template.querySelector("lightning-input[data-target=messageInput]").value = "";
@@ -111,8 +120,28 @@ export default class CrmAnalyticsChatbot extends LightningElement {
         this.messageIndex++;
     }
 
+    getAIResponse(message) {
+        getResponseToPrompt({prompt: message})
+            .then((result) => {
+                console.log('result: ' + JSON.stringify(result));
+                let msg = result. result.choices[0].message.content;
+                // this.message = result;
+                this.addMessageToChatTranscript(msg, ANALYTICS_BOT_USER_LABEL, "outbound");
+                //TODO: Remove typing message
+            }).catch((error) => {
+                this.dispatchEvent(new ShowToastEvent({
+                    title: 'ERROR!!!',
+                    message: error.message,
+                    variant: 'error'
+                }));
+                //TODO: Remove typing message
+            })
+    }
+
     handleSelectedDatasetChange(event) {
         this.dataset = event.detail.dataset;
+        this.datasetId = event.detail.dataset.id;
+        this.datasetVersionId = event.detail.dataset.currentVersionId;
 
         //Dataset Changed message
         this.showChat = true;

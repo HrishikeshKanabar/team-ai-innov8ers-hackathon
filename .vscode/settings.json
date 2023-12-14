@@ -15,5 +15,5 @@
         "**/.exchange_modules_tmp": true,
         ".mule": true
     },
-    "vlocity.sfdxUsername": "sdhond@salesforce.com.aihackathonorg"
+    "vlocity.sfdxUsername": "crm-analytics-org"
 }
