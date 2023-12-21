@@ -3,7 +3,7 @@
         <c-crm-analytics-dataset-info record-id={datasetId}></c-crm-analytics-dataset-info>
     </lightning-card>
     <template lwc:if={showAttributes}>
-        <div class="slds-card">
+        <div class="slds-card slds-scrollable" style="height:20rem;">
             <lightning-accordion class="example-accordion"
                             active-section-name="dateSection">
                 <lightning-accordion-section name="dateSection" label="Dates">

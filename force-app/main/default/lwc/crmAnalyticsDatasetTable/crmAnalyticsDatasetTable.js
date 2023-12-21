@@ -33,9 +33,11 @@ export default class CrmAnalyticsDatasetTable extends LightningElement {
         } else if (data) {
             this._datasets = [];
             for(let dataset of data.datasets) {
-                this._datasets.push(this.flatten(dataset));
+                let flattenedDataset = this.flatten(dataset);
+                flattenedDataset.url = "/" + flattenedDataset.id;
+                flattenedDataset["folder.url"] = "/" + flattenedDataset["folder.id"];
+                this._datasets.push(flattenedDataset);
             }
-            console.log("datasets: " + JSON.stringify(this._datasets));
         }
     }
 
