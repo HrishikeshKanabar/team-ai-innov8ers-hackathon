@@ -64,7 +64,7 @@ export default class CrmAnalyticsDatasetDescribe extends LightningElement {
                     format: datefield.format
                 });
             }
-            console.log('this.datasetVersionDateFields: ' + JSON.stringify(this.datasetVersionDateFields));
+            // console.log('this.datasetVersionDateFields: ' + JSON.stringify(this.datasetVersionDateFields));
 
             //extract dimensions
             for(let key in this.datasetVersion.xmdMain.dimensions) {
@@ -77,7 +77,7 @@ export default class CrmAnalyticsDatasetDescribe extends LightningElement {
                     });
                 }
             }
-            console.log('this.datasetVersionDimensions: ' + JSON.stringify(this.datasetVersionDimensions));
+            // console.log('this.datasetVersionDimensions: ' + JSON.stringify(this.datasetVersionDimensions));
 
             //extract measures
             for(let key in this.datasetVersion.xmdMain.measures) {
@@ -91,7 +91,7 @@ export default class CrmAnalyticsDatasetDescribe extends LightningElement {
                     });
                 }
             }
-            console.log('this.datasetVersionMeasures: ' + JSON.stringify(this.datasetVersionMeasures));
+            // console.log('this.datasetVersionMeasures: ' + JSON.stringify(this.datasetVersionMeasures));
 
             //show tables
             this.showAttributes = true;

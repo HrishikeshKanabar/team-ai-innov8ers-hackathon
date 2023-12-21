@@ -18,7 +18,7 @@
     <isNavAutoTempTabsDisabled>true</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>true</isNavPersonalizationDisabled>
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
-    <label>Analytics Helper</label>
+    <label>Analytics Companion</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
     <uiType>Lightning</uiType>

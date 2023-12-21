@@ -5,7 +5,6 @@ export default class ChatMessage extends LightningElement {
     @api messageDirection;
     @api messageAuthor;
 
-    @track messageTime;
     @track authorLabel;
 
     connectedCallback() {
@@ -15,9 +14,9 @@ export default class ChatMessage extends LightningElement {
     renderedCallback() {
         //set direction
         var listItemClass = this.messageDirection == "inbound" ? 
-            "slds-chat-message__text_inbound" : "slds-chat-listitem_outbound";
+            "slds-chat-listitem_inbound" : "slds-chat-listitem_outbound";
         var messageClass = this.messageDirection == "inbound" ? 
-            "slds-chat-message__text_inbound" : "slds-chat-listitem_outbound";
+            "slds-chat-message__text_inbound" : "slds-chat-message__text_outbound";
         
         //add to markup
         var listItem = this.refs.messageListItem;
@@ -29,7 +28,7 @@ export default class ChatMessage extends LightningElement {
         var date = new Date();
         this.authorLabel = this.messageAuthor + " • " + date.toLocaleTimeString();
 
-        console.log('message: ' + this.message);
-        console.log('messageAuthor: ' + this.authorLabel);
+        // console.log('message: ' + this.message);
+        // console.log('messageAuthor: ' + this.authorLabel);
     }
 }

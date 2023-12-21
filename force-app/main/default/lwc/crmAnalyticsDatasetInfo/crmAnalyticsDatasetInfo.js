@@ -17,7 +17,7 @@ export default class CrmAnalyticsDatasetInfo extends LightningElement {
             }));
         } else if (data) {
             this.dataset = data;
-            console.log("this.dataset: " + JSON.stringify(this.dataset));
+            // console.log("this.dataset: " + JSON.stringify(this.dataset));
         }
     }
 

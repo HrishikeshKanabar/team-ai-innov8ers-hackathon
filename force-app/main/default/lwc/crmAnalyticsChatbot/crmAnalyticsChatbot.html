@@ -2,7 +2,7 @@
     <lightning-card title="CRM Analytics Chatbot">
         <c-analytics-dataset-selector onselecteddatasetchange={handleSelectedDatasetChange}></c-analytics-dataset-selector>
         <template lwc:if={showChat}>
-            <section role="log" class="slds-chat slds-scrollable slds-p-around_x-small" style="height:20rem;">
+            <section role="log" class="slds-chat slds-scrollable slds-p-around_x-small" style="height:42rem;">
                 <ul class="slds-chat-list" data-target="chatContext">
                     <div class="slds-chat-bookend">
                         <span class="slds-icon_container slds-icon-utility-chat slds-chat-icon">
@@ -28,6 +28,22 @@
                                 message-author={chatMessage.messageAuthor}>
                             </c-chat-message>
                         </template>
+                        <template if:true={chatMessage.isAction}>
+                            <c-chat-action-button
+                                key={chatMessage.messageKey}
+                                author={chatMessage.author}
+                                direction={chatMessage.direction}
+                                label={chatMessage.label}
+                                action={chatMessage.action}
+                                onchataction={handleChatAction}>
+                            </c-chat-action-button>
+                        </template>
+                    </template>
+                    <template lwc:if={showTyping}>
+                        <c-chat-typing
+                            author={typingAuthor}
+                            direction={typingDirection}>
+                        </c-chat-typing>
                     </template>
                 </ul>
                 <div class="slds-grid slds-gutters">

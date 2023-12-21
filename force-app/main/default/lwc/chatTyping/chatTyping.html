@@ -1,8 +1,8 @@
 <template>
-    <li class="slds-chat-listitem" data-target="chatMessageLi">
+    <li class="slds-chat-listitem" lwc:ref="messageListItem">
         <div class="slds-chat-message">
           <div class="slds-chat-message__body">
-            <div class="slds-chat-message__text" data-target="chatMessageDiv">
+            <div class="slds-chat-message__text" lwc:ref="messageBody">
               <span class="slds-icon-typing slds-is-animated" title={authorLabel}>
                 <span class="slds-icon-typing__dot"></span>
                 <span class="slds-icon-typing__dot"></span>

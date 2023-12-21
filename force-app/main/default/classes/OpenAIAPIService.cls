@@ -7,7 +7,7 @@ public with sharing class OpenAIAPIService {
         HttpRequest req = new HttpRequest();
         req.setEndpoint('callout:OpenAIAPI' + openAISetting.Endpoint__c);
         req.setMethod('POST');
-        //req.setBody('{messages: [{role: "user", content: "' + prompt + '"}], model: "gpt-3.5-turbo"}');
+        req.setTimeout(120000);
         Message msg = new Message('user', prompt);
         Request reqPayload = new Request(new List<Message>{msg}, openAISetting.Model__c);
         req.setBody(JSON.serialize(reqPayload));
