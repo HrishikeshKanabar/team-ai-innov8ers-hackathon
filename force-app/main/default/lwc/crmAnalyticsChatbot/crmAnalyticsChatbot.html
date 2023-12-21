@@ -1,0 +1,60 @@
+<template>
+    <lightning-card title="CRM Analytics Chatbot">
+        <c-analytics-dataset-selector onselecteddatasetchange={handleSelectedDatasetChange}></c-analytics-dataset-selector>
+        <template lwc:if={showChat}>
+            <section role="log" class="slds-chat slds-scrollable slds-p-around_x-small" style="height:42rem;">
+                <ul class="slds-chat-list" data-target="chatContext">
+                    <div class="slds-chat-bookend">
+                        <span class="slds-icon_container slds-icon-utility-chat slds-chat-icon">
+                        <svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chat"></use>
+                        </svg>
+                        </span>
+                        <p>Chat started by
+                        <b> {currentUserAlias}</b> • {chatStartTime}</p>
+                    </div>
+                    <template for:each={chatTranscript} for:item="chatMessage">
+                        <template if:false={chatMessage.isMessage}>
+                            <c-chat-event
+                                key={chatMessage.messageKey}
+                                message={chatMessage.message}>
+                            </c-chat-event>
+                        </template>
+                        <template if:true={chatMessage.isMessage}>
+                            <c-chat-message
+                                key={chatMessage.messageKey}
+                                message={chatMessage.message}
+                                message-direction={chatMessage.messageDirection}
+                                message-author={chatMessage.messageAuthor}>
+                            </c-chat-message>
+                        </template>
+                        <template if:true={chatMessage.isAction}>
+                            <c-chat-action-button
+                                key={chatMessage.messageKey}
+                                author={chatMessage.author}
+                                direction={chatMessage.direction}
+                                label={chatMessage.label}
+                                action={chatMessage.action}
+                                onchataction={handleChatAction}>
+                            </c-chat-action-button>
+                        </template>
+                    </template>
+                    <template lwc:if={showTyping}>
+                        <c-chat-typing
+                            author={typingAuthor}
+                            direction={typingDirection}>
+                        </c-chat-typing>
+                    </template>
+                </ul>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_9-of-12">
+                        <lightning-input type="text" data-target="messageInput"></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_3-of-12">
+                        <lightning-button label="Send" onclick={handleSend}></lightning-button>
+                    </div>
+                </div>
+            </section>
+        </template>
+    </lightning-card>
+</template>

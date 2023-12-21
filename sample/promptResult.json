@@ -1,0 +1,20 @@
+{
+    "choices": [
+        {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+                "content": "The JSON data describes a dataset called \"Accounts\" from CRM Analytics. It contains information about various account entities in the CRM system. The dataset has the following properties:\n\n- \"id\": The unique identifier of the dataset.\n- \"label\": The label or display name of the dataset.\n- \"name\": The name of the dataset.\n- \"type\": The type of the dataset, which is \"dataset\".\n- \"url\": The URL to access the dataset.\n- \"dateFields\": An array of date fields in the dataset, including their labels, names, and field names.\n- \"dimensionFields\": An array of dimension fields in the dataset, including their labels, names, and field names. Dimension fields represent attributes or characteristics of the accounts, such as owner details, account name, industry, etc.\n- \"measureFields\": An array of measure fields in the dataset, including their labels, names, field names, and formatting information. Measure fields represent numerical values associated with the accounts, such as the number of employees and annual revenue.\n\nThis dataset can be used for analyzing and generating insights about the accounts in the CRM system.",
+                "role": "assistant"
+            }
+        }
+    ],
+    "created": "1702593124",
+    "id": "chatcmpl-8VoXMBujkOKXyeGLsZvXLvzzuHtTz",
+    "model": "gpt-3.5-turbo-0613",
+    "usage": {
+        "completion_tokens": 228,
+        "prompt_tokens": 774,
+        "total_tokens": 1002
+    }
+}

@@ -6,6 +6,7 @@ public with sharing class AIConnectAPIService {
             generationsInput.promptTextorId = prompt;
             generationsInput.additionalConfig = new ConnectApi.EinsteinLlmAdditionalConfigInput();
             generationsInput.additionalConfig.maxTokens = 512;
+            generationsInput.additionalConfig.applicationName = 'AI-Innov8rs-PromptBasedReporting';
 
             // Call the service
             ConnectApi.EinsteinLLMGenerationsOutput generationsOutput = ConnectApi.EinsteinLLM.generateMessages(generationsInput);

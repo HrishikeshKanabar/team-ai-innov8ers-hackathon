@@ -15,5 +15,5 @@
         "**/.exchange_modules_tmp": true,
         ".mule": true
     },
-    "vlocity.sfdxUsername": "ai-hackthon-scratch2"
+    "vlocity.sfdxUsername": "crm-analytics-org"
 }

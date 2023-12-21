@@ -1,0 +1,38 @@
+<template>
+    <lightning-card title="Selected Dataset">
+        <c-crm-analytics-dataset-info record-id={datasetId}></c-crm-analytics-dataset-info>
+    </lightning-card>
+    <template lwc:if={showAttributes}>
+        <div class="slds-card slds-scrollable" style="height:20rem;">
+            <lightning-accordion class="example-accordion"
+                            active-section-name="dateSection">
+                <lightning-accordion-section name="dateSection" label="Dates">
+                    <lightning-datatable
+                        key-field="name"
+                        data={datasetVersionDateFields}
+                        columns={dateColumns}
+                        class="slds-p-around_x-small">
+                    </lightning-datatable>
+                </lightning-accordion-section>
+
+                <lightning-accordion-section name="dimensionSection" label="Dimensions">
+                    <lightning-datatable
+                        key-field="name"
+                        data={datasetVersionDimensions}
+                        columns={dimensionColumns}
+                        class="slds-p-around_x-small">
+                    </lightning-datatable>
+                </lightning-accordion-section>
+
+                <lightning-accordion-section name="measureSection" label="Measures">
+                    <lightning-datatable
+                        key-field="name"
+                        data={datasetVersionMeasures}
+                        columns={measureColumns}
+                        class="slds-p-around_x-small">
+                    </lightning-datatable>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </div>
+    </template>
+</template>
